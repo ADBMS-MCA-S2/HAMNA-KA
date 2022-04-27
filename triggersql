@@ -1,0 +1,11 @@
+
+
+CREATE DEFINER=`root`@`localhost` TRIGGER `employees`.`employee_BEFORE_INSERT` BEFORE INSERT ON `employee` FOR EACH ROW
+BEGIN
+if new.department_name="mca" then
+ INSERT INTO dpt_mca set dept_id=new.emp_id,dept_name=new.emp_name,dept_emp="Asst.proff fill";
+ end if;
+ if new.department_name="cs" then
+  INSERT INTO dpt_cs set dept_id=new.emp_id,dept_name=new.emp_name,dept_emp="Asst.proff fill";
+ end if;
+END

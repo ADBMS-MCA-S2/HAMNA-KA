@@ -1,0 +1,18 @@
+create database employees;
+use employees;
+
+create table employee(emp_id int,emp_name varchar(10),department_name varchar(15));
+insert into employee values(101,"Coen","mca");
+insert into employee values(102,"aloe","mca");
+insert into employee values(103,"Raimi","btech");
+insert into employee values(104,"Ras","mca");
+create table dpt_mca(dept_id int,dept_name varchar(20), dept_emp varchar(15));
+create table dpt_cs(dept_id int,dept_name varchar(20), dept_emp varchar(15));
+
+select * from employee;
+insert into employee values(105,"Anu","mca");
+select * from dpt_mca;
+insert into employee values(106,"R0se","CS");
+select * from dpt_cs;
+
+
