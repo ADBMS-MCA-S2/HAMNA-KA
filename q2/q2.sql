@@ -1,3 +1,4 @@
+create department;
 use department;
 create table dept(deptno varchar(20) not null,dname varchar(20) not null,loc varchar(20) not null,primary key(deptno));
 insert into dept values("d001","finance","kollam");
