@@ -1,0 +1,175 @@
+ use student
+  db.createCollection("student")
+  { "ok" : 1 }
+> show collections
+details
+student
+> db.student.insertMany(
+... [
+... {
+...     "srn":101,
+...     "sname":"hamna",
+...     "degree":"bca",
+...     "sem":6,
+...     "cgpa":7
+... },
+... {
+...
+...     "srn":102,
+...     "sname":"rahul",
+...     "degree":"bca",
+...     "sem":3,
+...     "cgpa":6
+... },
+... {
+...
+...     "srn":103,
+...     "sname":"henna",
+...     "degree":"mca",
+...     "sem":5,
+...     "cgpa":5
+...
+... },
+... {
+...
+...     "srn":104,
+...     "sname":"nihal",
+...     "degree":"bsc",
+...     "sem":6,
+...     "cgpa":4
+... },
+... {
+...
+...     "srn":105,
+...     "sname":"nesy",
+...     "degree":"bsc",
+...     "sem":5,
+...     "cgpa":6
+... },
+... {
+...
+...     "srn":106,
+...     "sname":"kabeer",
+...     "degree":"bca",
+...     "sem":5,
+...     "cgpa":6
+... },
+... {
+...
+...     "srn":107,
+...     "sname":"kadeeja",
+...     "degree":"bca",
+...     "sem":6,
+...     "cgpa":7
+... }
+... ]
+... )
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("62a568a438f4aa8064c0997d"),
+                ObjectId("62a568a438f4aa8064c0997e"),
+                ObjectId("62a568a438f4aa8064c0997f"),
+                ObjectId("62a568a438f4aa8064c09980"),
+                ObjectId("62a568a438f4aa8064c09981"),
+                ObjectId("62a568a438f4aa8064c09982"),
+                ObjectId("62a568a438f4aa8064c09983")
+        ]
+}
+> db.student.find().pretty()
+{
+        "_id" : ObjectId("62a568a438f4aa8064c0997d"),
+        "srn" : 101,
+        "sname" : "hamna",
+        "degree" : "bca",
+        "sem" : 6,
+        "cgpa" : 7
+}
+{
+        "_id" : ObjectId("62a568a438f4aa8064c0997e"),
+        "srn" : 102,
+        "sname" : "rahul",
+        "degree" : "bca",
+        "sem" : 3,
+        "cgpa" : 6
+}
+{
+        "_id" : ObjectId("62a568a438f4aa8064c0997f"),
+        "srn" : 103,
+        "sname" : "henna",
+        "degree" : "mca",
+        "sem" : 5,
+        "cgpa" : 5
+}
+{
+        "_id" : ObjectId("62a568a438f4aa8064c09980"),
+        "srn" : 104,
+        "sname" : "nihal",
+        "degree" : "bsc",
+        "sem" : 6,
+        "cgpa" : 4
+}
+{
+        "_id" : ObjectId("62a568a438f4aa8064c09981"),
+        "srn" : 105,
+        "sname" : "nesy",
+        "degree" : "bsc",
+        "sem" : 5,
+        "cgpa" : 6
+}
+{
+        "_id" : ObjectId("62a568a438f4aa8064c09982"),
+        "srn" : 106,
+        "sname" : "kabeer",
+        "degree" : "bca",
+        "sem" : 5,
+        "cgpa" : 6
+}
+{
+        "_id" : ObjectId("62a568a438f4aa8064c09983"),
+        "srn" : 107,
+        "sname" : "kadeeja",
+        "degree" : "bca",
+        "sem" : 6,
+        "cgpa" : 7
+}
+> db.student.find({"degree":"bca"},{sname:1})                        //display all students in bca
+{ "_id" : ObjectId("62a568a438f4aa8064c0997d"), "sname" : "hamna" }
+{ "_id" : ObjectId("62a568a438f4aa8064c0997e"), "sname" : "rahul" }
+{ "_id" : ObjectId("62a568a438f4aa8064c09982"), "sname" : "kabeer" }
+{ "_id" : ObjectId("62a568a438f4aa8064c09983"), "sname" : "kadeeja" }
+>db.student.find({},{"sname":1,_id:0}).sort({sname:1})             //display all students in ascending order
+{ "sname" : "hamna" }
+{ "sname" : "henna" }
+{ "sname" : "kabeer" }
+{ "sname" : "kadeeja" }
+{ "sname" : "nesy" }
+{ "sname" : "nihal" }
+{ "sname" : "rahul" }
+> db.student.find({},{"sname":1,_id:0}).limit(5)                   //display first 5 students
+{ "sname" : "hamna" }
+{ "sname" : "rahul" }
+{ "sname" : "henna" }
+{ "sname" : "nihal" }
+{ "sname" : "nesy" }
+> db.student.find({},{"sname":1,_id:0}).skip(4).limit(3)         //display 5 6 7 students
+{ "sname" : "nesy" }
+{ "sname" : "kabeer" }
+{ "sname" : "kadeeja" }
+>  db.student.find()._addSpecial("$orderby",{cgpa:-1}).skip(4).limit(3)    //Display students details of 5,6,7 in descending order of percentage
+{ "_id" : ObjectId("62a568a438f4aa8064c09981"), "srn" : 105, "sname" : "nesy", "degree" : "bsc", "sem" : 5, "cgpa" : 6 }
+{ "_id" : ObjectId("62a568a438f4aa8064c09982"), "srn" : 106, "sname" : "kabeer", "degree" : "bca", "sem" : 5, "cgpa" : 6 }
+{ "_id" : ObjectId("62a568a438f4aa8064c09983"), "srn" : 107, "sname" : "kadeeja", "degree" : "bca", "sem" : 6, "cgpa" : 7 }
+> db.student.find({"degree":"bca"}).count()  //Display the number of students in BCA
+4
+> db.student.find({},{degree:1,_id:0})               //Display all the degrees without _id
+{ "degree" : "bca" }
+{ "degree" : "bca" }
+{ "degree" : "mca" }
+{ "degree" : "bsc" }
+{ "degree" : "bsc" }
+{ "degree" : "bca" }
+{ "degree" : "bca" }
+> db.student.distinct("degree")                    //display all the distinct degree
+[ "bca", "bsc", "mca" ]   
+
