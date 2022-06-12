@@ -156,6 +156,8 @@ student
 { "sname" : "nesy" }
 { "sname" : "kabeer" }
 { "sname" : "kadeeja" }
+> db. student.find({sname:"rahul"},{degree:1,_id:0})      //display the degree of rahul
+{ "degree" : "bca" }
 >  db.student.find()._addSpecial("$orderby",{cgpa:-1}).skip(4).limit(3)    //Display students details of 5,6,7 in descending order of percentage
 { "_id" : ObjectId("62a568a438f4aa8064c09981"), "srn" : 105, "sname" : "nesy", "degree" : "bsc", "sem" : 5, "cgpa" : 6 }
 { "_id" : ObjectId("62a568a438f4aa8064c09982"), "srn" : 106, "sname" : "kabeer", "degree" : "bca", "sem" : 5, "cgpa" : 6 }
