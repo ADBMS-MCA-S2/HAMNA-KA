@@ -1,0 +1,23 @@
+
+// customers who are either male or younger than 25.
+
+> db.details.find({$or:[{gender:"male"},{age:{$lt:25}}]},{_id:0})
+{ "name" : "Rio", "gender" : "male", "age" : 20, "amount" : 2000 }
+{ "name" : "Adam", "gender" : "male", "age" : 25, "amount" : 4000 }
+{ "name" : "Taylor", "gender" : "female", "age" : 20, "amount" : 9000 }
+{ "name" : "Rohan", "gender" : "male", "age" : 22, "amount" : 5000 }
+{ "name" : "Kate", "gender" : "female", "age" : 23, "amount" : 700 }
+{ "name" : "John", "gender" : "female", "age" : 24, "amount" : 4000 }
+
+// total purchase amount for males and females using aggreagate
+
+> db.details.aggregate([{$group:{_id:"$gender","total_amt":{$sum:"$amount"}}}])
+{ "_id" : "male", "total_amt" : 30000 }
+{ "_id" : "female", "total_amt" : 72700 }
+
+// customers who are older than 25 - calculate avg purchase amount for males and females  - sort the data based on avg amount.
+
+> db.details.aggregate([{$match:{"age":{$gte:25}}},{$group:{_id:"$gender","avg_amt":{$avg:"$amount"}}},{$sort:{avg:1}}])
+{ "_id" : "male", "avg_amt" : 4666.666666666667 }
+{ "_id" : "female", "avg_amt" : 14750 }
+>
