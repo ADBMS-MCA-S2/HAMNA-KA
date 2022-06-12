@@ -1,0 +1,16 @@
+1.Display all the employees with salary in range (50000, 75000)
+>db.emp.find({salary:{$gt:50000, $lt:75000}})
+2.Display all the employees with desig developer
+>db.emp.find({desig:"developer"})
+3.Display the Salary of “Rahul”
+>db.emp.find({ename:"Rahul"},{salary:1})
+4.Display the city of employee “Rahul”
+>db.emp.find({ename:"Rahul"},{"address.city":1})
+5.Update the salary of developers by 5000 increment
+>db.emp.update({desig:"developer"},{$inc:{"salary":5000}})
+6.Add field age to employee “Rahul”
+>db.emp.update({ename:"Rahul"},{$set:{age:"22"}})
+7.Remove YOJ from “Rahul”
+>db.emp.update({ename:"Rahul"},{$unset:{yoj:1}})
+8.Add an array field project to “Rahul”
+>db.emp.update({ename:"Rahul"},{$push:{projects:"p1"}}
