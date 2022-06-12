@@ -174,10 +174,11 @@ student
 { "degree" : "bca" }
 > db.student.distinct("degree")                    //display all the distinct degree
 [ "bca", "bsc", "mca" ]   
-> db.student.find({cgpa:{$gt:5,$lt:7}},{degree:"bca"})                   //Display all the BCA students with CGPA greater than 6, but less than 7.5
-{ "_id" : ObjectId("62a568a438f4aa8064c0997e"), "degree" : "bca" }
-{ "_id" : ObjectId("62a568a438f4aa8064c09981"), "degree" : "bca" }
-{ "_id" : ObjectId("62a568a438f4aa8064c09982"), "degree" : "bca" }
+                                                              //Display all the BCA students with CGPA greater than 6, but less than 7.5
+> db.student.find({cgpa:{$gt:5,$lt:7}},{sname:1,degree:"bca"})
+{ "_id" : ObjectId("62a568a438f4aa8064c0997e"), "sname" : "rahul", "degree" : "bca" }
+{ "_id" : ObjectId("62a568a438f4aa8064c09981"), "sname" : "nesy", "degree" : "bca" }
+{ "_id" : ObjectId("62a568a438f4aa8064c09982"), "sname" : "kabeer", "degree" : "bca" }
 > db.student.find({degree:"bca",sem:6},{sname:1,_id:0})        //Display all the students in BCA and in 6th Sem
 { "sname" : "hamna" }
 { "sname" : "kadeeja" }
