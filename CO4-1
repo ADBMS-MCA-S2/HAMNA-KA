@@ -1,0 +1,34 @@
+use student
+show dbs
+admin    0.000GB
+college  0.000GB
+config   0.000GB
+local    0.000GB
+student  0.000GB
+ db.details.insertMany(
+... [
+... {
+...    "sno":1,
+...    "name":"hamna",
+...    "degree":"bca"
+... },
+... {
+...     "sno":2,
+...     "name":"henna",
+...     "degree":"mca"
+... },
+... {
+...     "sno":3,
+...     "name":"nihal",
+...     "degree":"bsc"
+... }
+... ]
+... )
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("62a5624ba13491d6f7fe5a32"),
+                ObjectId("62a5624ba13491d6f7fe5a33"),
+                ObjectId("62a5624ba13491d6f7fe5a34")
+        ]
+}
