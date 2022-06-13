@@ -1,3 +1,120 @@
+
+> use employee
+switched to db employee
+> db.createCollection("employee")
+{ "ok" : 1 }
+> db.employee.insertMany(
+... [
+... {
+...    "eid":101,
+...    "ename":"rahul",
+...    "dept":"It",
+...    "designation":"developer",
+...    "salary":6000,
+...    "yoj":2000,
+...    "address":[
+...            {
+...                 "dno":11,
+...                 "street":"A11",
+...                 "locality:":"technopark",
+...                 "city":"tvm"
+...            }
+...           ]
+... },
+... {
+...    "eid":102,
+...    "ename":"daniel",
+...    "dept":"product",
+...    "designation":"developer",
+...    "salary":75000,
+...    "yoj":2015,
+...    "address":[
+...            {
+...                 "dno":112,
+...                 "street":"kakkanad",
+...                 "locality:":"infopark",
+...                 "city":"kochi"
+...            }
+...           ]
+... },
+... {
+...    "eid":103,
+...    "ename":"sara",
+...    "dept":"HR",
+...    "designation":"recruit",
+...    "salary":60000,
+...    "yoj":2011,
+...    "address":[
+...            {
+...                 "dno":112,
+...                 "street":"cherthala",
+...                 "locality:":"infopark",
+...                 "city":"kochi"
+...            }
+...           ]
+... },
+... {
+...    "eid":104,
+...    "ename":"yamini",
+...    "dept":"testing",
+...    "designation":"tester",
+...    "salary":35000,
+...    "yoj":2017,
+...    "address":[
+...            {
+...                 "dno":112,
+...                 "street":"kakkanad",
+...                 "locality:":"infopark",
+...                 "city":"kochi"
+...            }
+...           ]
+... },
+... {
+...    "eid":105,
+...    "ename":"sushin",
+...    "dept":"rd",
+...    "designation":"manager",
+...    "salary":66000,
+...    "yoj":2021,
+...    "address":[
+...            {
+...                 "dno":112,
+...                 "street":"cherthala",
+...                 "locality:":"infopark",
+...                 "city":"kochi"
+...            }
+...           ]
+... },
+... {
+...    "eid":106,
+...    "ename":"tibin",
+...    "dept":"logistics",
+...    "designation":"seniorhead",
+...    "salary":90000,
+...    "yoj":2022,
+...    "address":[
+...            {
+...                 "dno":11,
+...                 "street":"A11",
+...                 "locality:":"technopark",
+...                 "city":"kochi"
+...            }
+...           ]
+... }
+... ]
+... )
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("62a75c82c403faaae4244d34"),
+                ObjectId("62a75c82c403faaae4244d35"),
+                ObjectId("62a75c82c403faaae4244d36"),
+                ObjectId("62a75c82c403faaae4244d37"),
+                ObjectId("62a75c82c403faaae4244d38"),
+                ObjectId("62a75c82c403faaae4244d39")
+        ]
+}
+
 1.Display all the employees with salary in range (50000, 75000)
 >db.emp.find({salary:{$gt:50000, $lt:75000}})
 2.Display all the employees with desig developer
