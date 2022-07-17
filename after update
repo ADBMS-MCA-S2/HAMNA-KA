@@ -1,0 +1,33 @@
+CREATE DEFINER=`root`@`localhost` TRIGGER `hss`.`aftr_update` AFTER UPDATE ON `booking1` FOR EACH ROW
+BEGIN
+declare bill int(10);
+declare id int(10);
+if(old.dist=500)
+then
+   set bill=10000;
+   set id=new.bk_id;
+   insert into bill1 values(bill,id);
+else
+   set bill=50000;
+   set id=new.bk_id;
+   insert into bill1 values(bill,id);
+end if;
+END
+
+create database henna;
+use henna;
+drop table booking1;
+drop table bill1;
+CREATE TABLE booking1(bk_id int(50),name varchar(50),source varchar(50),dist int(50));
+CREATE TABLE bill1(id int(10),bill int(10));
+INSERT INTO booking1 values(10,"Gaya","TLY",500);
+INSERT INTO booking1 values(12,"Ganga","QLN",1500);
+INSERT INTO booking1 values(14,"Gayathri","Alappy",500);
+SELECT * from bill1;
+SELECT * from booking1;
+CREATE TRIGGER aftr_update AFTER UPDATE
+ON booking1 FOR EACH ROW
+
+SET SQL_SAFE_UPDATES = 0;
+UPDATE booking1
+SET name="hdfdf" WHERE bk_id=12;
