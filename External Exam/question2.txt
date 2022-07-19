@@ -4,8 +4,9 @@
 > db.student.insert({_id:4,name:'Vimal',place:'Ernakulam',phone:8582639568,vaccination_status:'First dose only',RTPCR:'positive',lab_mark:[{internal:40,external:42}],department:'Civil'})
 > db.student.insert({_id:5,name:'Vivek',place:'Kollam',phone:8582639777,vaccination_status:'Both vaccinated',RTPCR:'negative',lab_mark:[{internal:50,external:50}],department:'MCA'})
 
-> db.student.find({vaccination_status:"Not vaccinated"},{name:1,_id:0}).sort({name:1})
-{ "name" : "Bismiya" }
+> db.student.find({vaccination_status:"Not vaccinated"},{name:1,_id:0}).count({name:1})
+1
+>
 > db.student.find({department:"MCA"},{name:1,_id:0,phone:1}).sort({"lab_mark.external":-1})
 { "name" : "Vivek", "phone" : 8582639777 }
 { "name" : "Anjali", "phone" : 8582639562 }
