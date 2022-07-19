@@ -1,0 +1,30 @@
+> db.student.insert({_id:1,name:'Anjali',place:'Kollam',phone:8582639562,vaccination_status:'Both vaccinated',RTPCR:'negative',lab_mark:[{internal:30,external:45}],department:'MCA'})
+> db.student.insert({_id:3,name:'Bismiya',place:'Kollam',phone:9446639562,vaccination_status:'Not vaccinated',RTPCR:'positive',lab_mark:[{internal:50,external:39}],department:'MCA'})
+> db.student.insert({_id:2,name:'Anuradha',place:'Varkala',phone:9992639562,vaccination_status:'Both vaccinated',RTPCR:'negative',lab_mark:[{internal:40,external:48}],department:'Civil'})
+> db.student.insert({_id:4,name:'Vimal',place:'Ernakulam',phone:8582639568,vaccination_status:'First dose only',RTPCR:'positive',lab_mark:[{internal:40,external:42}],department:'Civil'})
+> db.student.insert({_id:5,name:'Vivek',place:'Kollam',phone:8582639777,vaccination_status:'Both vaccinated',RTPCR:'negative',lab_mark:[{internal:50,external:50}],department:'MCA'})
+
+> db.student.find({vaccination_status:"Not vaccinated"},{name:1,_id:0}).sort({name:1})
+{ "name" : "Bismiya" }
+> db.student.find({department:"MCA"},{name:1,_id:0,phone:1}).sort({"lab_mark.external":-1})
+{ "name" : "Vivek", "phone" : 8582639777 }
+{ "name" : "Anjali", "phone" : 8582639562 }
+{ "name" : "Bismiya", "phone" : 9446639562 }
+> db.student.update({_id:4},{$set:{vaccination_status:"Both vaccinated"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+
+{
+        "_id" : 4,
+        "name" : "Vimal",
+        "place" : "Ernakulam",
+        "phone" : 8582639568,
+        "vaccination_status" : "Both vaccinated",
+        "RTPCR" : "positive",
+        "lab_mark" : [
+                {
+                        "internal" : 40,
+                        "external" : 42
+                }
+        ],
+        "department" : "Civil"
+}
