@@ -1,0 +1,30 @@
+create database college;
+use college;
+
+create table department(dept_no int primary key not null,dept_name varchar(20),location varchar(20));
+create table employee(emp_no int primary key not null,emp_name varchar(20),salary float,dept_no int,foreign key (dept_no) references department(dept_no) on delete cascade);
+drop table department;
+drop table employee;
+
+describe department;
+describe employee;
+
+insert into department values(101,"mca","kollam");
+insert into department values(102,"cs","ekm");
+insert into department values(103,"ec","ekm");
+insert into department values(104,"civil","thrissur");
+insert into department values(105,"mca","kollam");
+
+insert into employee values(201,"sreelya",3000,101);
+insert into employee values(202,"jeslin",5000,102);
+insert into employee values(203,"rinsha",6000,103);
+insert into employee values(204,"akila",7000,104);
+insert into employee values(205,"anu",8000,101);
+
+select sum(salary) 'Total' from employee;
+
+select f.dept_name,s.count from department f natural join(
+select dept_no,count(emp_no) as count from employee group by dept_no) s ;
+
+
+select emp_name from employee where emp_name like 'A%';
